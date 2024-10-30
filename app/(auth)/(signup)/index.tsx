@@ -1,62 +1,95 @@
-import { router } from "expo-router";
+import React from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  KeyboardAvoidingView,
   ScrollView,
+  KeyboardAvoidingView,
+  Image,
+  TouchableOpacity,
+  Platform,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
+import CustomButton from "@/components/CustomButton";
+import { useMultiStepForm } from "@/useMultistepForm";
+import SignUpPhoneNumber from "./phoneNumber";
+import SignUpOTP from "./otp";
+import ProfileDetails from "./details";
+import GenderSelect from "./gender";
+import Nickname from "./nickname";
+import { useState } from "react";
 
-import ReactNativePhoneInput from "react-native-phone-input";
+const SignUpForm = () => {
+  const [formData, setFormData] = useState({
+    phoneNumber: "",
+    otp: "",
+    name: "",
+    email: "",
+    mobileNo: "",
+    dateOfBirth: "",
+    employmentStatus: "",
+    occupation: "",
+    address: "",
+    nickname: "",
+  });
+  const updateFormData = (data: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...data,
+    }));
+  };
+  const { steps, currentStepIndex, step, back, next, isFirstStep, isLastStep } =
+    useMultiStepForm([
+      <SignUpPhoneNumber formData={formData} updateFormData={updateFormData} />,
+      <SignUpOTP formData={formData} updateFormData={updateFormData} />,
+      <ProfileDetails formData={formData} updateFormData={updateFormData} />,
+      <GenderSelect />,
+      <Nickname formData={formData} updateFormData={updateFormData} />,
+    ]);
 
-export default function SignUpPhoneNumber() {
+  const handleFinish = () => {
+    console.log("Sign Up Form submitted:", formData);
+    router.push("/(onboarding)/welcome");
+  };
   return (
     <SafeAreaView className="h-full">
-      <KeyboardAvoidingView behavior="padding">
-        <ScrollView contentContainerStyle={{ height: "100%" }}>
-          <View className="min-h-[90%] my-auto p-[20px] flex-col justify-between">
-            <View className="space-y-[40px] w-full">
-              <View>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        className="bg-white"
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <ScrollView
+          contentContainerStyle={{
+            height: `${currentStepIndex === 2 ? "auto" : "100%"}`,
+          }}
+        >
+          <View className="min-h-[100%] my-auto p-[20px] flex-col justify-between">
+            <View className="w-full space-y-[40px] ">
+              <View className="flex flex-row items-center justify-between">
                 <TouchableOpacity
-                  onPress={() => {
-                    router.push("/(onboarding)");
-                  }}
+                  onPress={() => (isFirstStep ? router.back() : back())}
+                  className=""
                 >
                   <Image source={require("@/assets/images/back.png")} />
                 </TouchableOpacity>
-              </View>
-              <View className="space-y-[15px]">
-                <View className="space-y-1">
-                  <Text className="font-[700] text-[18px]">
-                    Enter Phone Number
-                  </Text>
-                  <Text className="font-[400] text-[12px] text-[#716C6C]">
-                    Please enter your phone number to Sign Up
+                <View>
+                  <Text>
+                    {currentStepIndex + 1} / {steps.length}
                   </Text>
                 </View>
-                <View className="border-[#640D6B] border-[1px] h-[54px] items-center flex-row rounded-[8px] px-2">
-                  <ReactNativePhoneInput
-                    initialCountry="ng"
-                    flagStyle={{ borderRadius: 3 }}
-                  />
-                </View>
               </View>
+              <View>{step}</View>
             </View>
             <View>
-              <TouchableOpacity
-                onPress={() => router.push("/(auth)/(signup)/otp")}
-                className="bg-[#640D6B] h-[54px] flex-row items-center justify-center rounded-[8px] "
-              >
-                <Text className="text-white text-[16px] font-[700]">
-                  Continue
-                </Text>
-              </TouchableOpacity>
+              <CustomButton
+                onPress={() => (isLastStep ? handleFinish() : next())}
+                title={isLastStep ? "Finish" : "Continue"}
+              />
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
-}
+};
+export default SignUpForm;

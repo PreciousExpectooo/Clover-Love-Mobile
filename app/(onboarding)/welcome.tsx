@@ -1,3 +1,4 @@
+import React from "react";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
@@ -11,7 +12,7 @@ export default function OnBoarding() {
             alt=""
           />
         </View>
-        <View className="flex-col gap-2">
+        <View className="flex-col gap-2 items-center">
           <View className="w-full">
             <TouchableOpacity
               onPress={() => {
@@ -19,7 +20,9 @@ export default function OnBoarding() {
               }}
               className="bg-white flex-row justify-center items-center h-[54px] rounded-[8px]"
             >
-              <Text className="text-[#640D6B]">Login</Text>
+              <Text className="text-[#640D6B] text-[16px] font-[700]">
+                Login
+              </Text>
             </TouchableOpacity>
           </View>
           <View className="w-full">
@@ -29,7 +32,7 @@ export default function OnBoarding() {
               }}
               className="border-white border-[1px] flex-row justify-center items-center h-[54px] rounded-[8px]"
             >
-              <Text className="text-white">Sign Up</Text>
+              <Text className="text-white text-[16px] font-[700]">Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>

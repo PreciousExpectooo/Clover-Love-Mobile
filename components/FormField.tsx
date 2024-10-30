@@ -1,3 +1,4 @@
+import React from "react";
 import { TextInput, View, Text } from "react-native";
 
 export default function FormField({
@@ -12,6 +13,8 @@ export default function FormField({
     <View className="bg-white w-[95%] mx-auto rounded-[8px] my-3 flex-col justify-center p-2">
       <Text className="text-black">{title}</Text>
       <TextInput
+        value={value}
+        onChangeText={handleChangeText}
         className="h-[30px] text-black"
         placeholder={placeholder}
         placeholderTextColor={"#000"}
