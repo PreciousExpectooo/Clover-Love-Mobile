@@ -5,8 +5,6 @@ export default function FormField({
   title,
   value,
   handleChangeText,
-  otherStyles,
-  type,
   placeholder,
 }: any) {
   return (
@@ -17,7 +15,7 @@ export default function FormField({
         onChangeText={handleChangeText}
         className="h-[30px] text-black"
         placeholder={placeholder}
-        placeholderTextColor={"#000"}
+        placeholderTextColor={"#A9A9A9"}
       />
     </View>
   );

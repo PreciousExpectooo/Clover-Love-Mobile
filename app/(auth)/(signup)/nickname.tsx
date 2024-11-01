@@ -10,10 +10,11 @@ export default function Nickname({ formData, updateFormData }: any) {
     >
       <View className="w-full mt-2">
         <TextInput
-          placeholder="Nickame right here"
+          placeholder="Nickname right here"
           className="bg-[#FAFAFA] h-[54px] rounded-[8px]"
-          placeholderTextColor={"#000"}
+          placeholderTextColor="#000"
           value={formData.nickname}
+          style={{ paddingLeft: 10 }}
           onChangeText={(e: any) =>
             updateFormData({ ...formData, nickname: e })
           }

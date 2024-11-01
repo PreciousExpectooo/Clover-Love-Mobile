@@ -1,22 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { View, Image, TouchableOpacity, Text } from "react-native";
-import FormField from "@/components/FormField";
-import React from "react";
 import CustomLayout from "@/components/CustomLayout";
-import * as ImagePicker from "expo-image-picker";
+import FormField from "@/components/FormField";
 import CustomDropdown from "@/components/CustomDropdown";
+import * as ImagePicker from "expo-image-picker";
 import { employmentStatusOptions } from "@/lib/data";
 
 export default function ProfileDetails({ formData, updateFormData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const handleImageSelect = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted === false) {
+    if (!permissionResult.granted) {
       alert("Permission to access media library is required!");
       return;
     }
@@ -29,9 +26,11 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
     });
 
     if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri as any);
+      const selectedImageUri = result.assets[0].uri;
+      updateFormData({ ...formData, profileImage: selectedImageUri });
     }
   };
+
   return (
     <CustomLayout
       title="Add Profile Details"
@@ -40,15 +39,18 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
       <View className="h-20 w-full" />
       <View className="bg-[#E65C191A] flex-col relative pt-20 rounded-[8px] mb-5">
         <View className="w-full flex justify-center items-center absolute z-10 -top-20">
-          <TouchableOpacity onPress={handleImageSelect}>
+          <TouchableOpacity onPress={handleImageSelect} className="relative">
             <Image
               source={
-                selectedImage
-                  ? { uri: selectedImage }
+                formData.profileImage
+                  ? { uri: formData.profileImage }
                   : require("../../../assets/images/details.png")
               }
               style={{ width: 150, height: 150, borderRadius: 8 }}
             />
+            <View className="bg-[#640D6B] w-[32px] h-[32px] absolute bottom-0 right-0 flex justify-center items-center rounded-[8px]">
+              <Image source={require("../../../assets/images/pencil.png")} />
+            </View>
           </TouchableOpacity>
         </View>
         <FormField
@@ -71,7 +73,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
         />
         <FormField
           title="Date of Birth"
-          placeholder="Kizito Don-Pedro"
+          placeholder="Enter Date of Birth"
           otherStyles="text-black"
           value={formData.dateOfBirth}
           handleChangeText={(e: any) =>
@@ -80,14 +82,13 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
         />
         <FormField
           title="Mobile"
-          placeholder="Kizito Don-Pedro"
+          placeholder="Enter Mobile Number"
           otherStyles="text-black"
           value={formData.mobileNo}
           handleChangeText={(e: any) =>
             updateFormData({ ...formData, mobileNo: e })
           }
         />
-
         <CustomDropdown
           title="Employment Status"
           placeholder={{ label: "Select Employment Status", value: null }}
@@ -97,10 +98,9 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           value={formData.employmentStatus}
           options={employmentStatusOptions}
         />
-
         <FormField
           title="Occupation"
-          placeholder="Kizito Don-Pedro"
+          placeholder="Enter Occupation"
           otherStyles="text-black"
           value={formData.occupation}
           handleChangeText={(e: any) =>
@@ -109,7 +109,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
         />
         <FormField
           title="Address"
-          placeholder="Kizito Don-Pedro"
+          placeholder="Enter Address"
           otherStyles="text-black"
           value={formData.address}
           handleChangeText={(e: any) =>

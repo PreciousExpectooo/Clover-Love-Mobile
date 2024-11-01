@@ -17,7 +17,10 @@ import SignUpOTP from "./otp";
 import ProfileDetails from "./details";
 import GenderSelect from "./gender";
 import Nickname from "./nickname";
+import SelectInterest from "./interest";
+import IdealMatch from "./match";
 import { useState } from "react";
+import ScanID from "./scan";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +34,8 @@ const SignUpForm = () => {
     occupation: "",
     address: "",
     nickname: "",
+    interests: "",
+    match: "",
   });
   const updateFormData = (data: any) => {
     setFormData((prevData) => ({
@@ -43,8 +48,11 @@ const SignUpForm = () => {
       <SignUpPhoneNumber formData={formData} updateFormData={updateFormData} />,
       <SignUpOTP formData={formData} updateFormData={updateFormData} />,
       <ProfileDetails formData={formData} updateFormData={updateFormData} />,
-      <GenderSelect />,
+      // <GenderSelect />,
+      // <ScanID />,
       <Nickname formData={formData} updateFormData={updateFormData} />,
+      <SelectInterest formData={formData} updateFormData={updateFormData} />,
+      <IdealMatch formData={formData} updateFormData={updateFormData} />,
     ]);
 
   const handleFinish = () => {
@@ -83,7 +91,13 @@ const SignUpForm = () => {
             <View>
               <CustomButton
                 onPress={() => (isLastStep ? handleFinish() : next())}
-                title={isLastStep ? "Finish" : "Continue"}
+                title={
+                  isLastStep
+                    ? "Finish"
+                    : currentStepIndex === 4
+                    ? "Start Scanning"
+                    : "Continue"
+                }
               />
             </View>
           </View>
