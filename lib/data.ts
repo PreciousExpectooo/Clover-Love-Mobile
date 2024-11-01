@@ -53,3 +53,18 @@ export const interestsOptions = [
     altIcon: require("../assets/images/books-icon.png"),
   },
 ];
+
+export const genderOptions = [
+  {
+    label: "Male",
+    value: "male",
+    icon: require("../assets/images/male-icon.png"),
+    iconHighlight: require("../assets/images/male-highlight.png"),
+  },
+  {
+    label: "Female",
+    value: "female",
+    icon: require("../assets/images/female-icon.png"),
+    iconHighlight: require("../assets/images/female-highlight.png"),
+  },
+];

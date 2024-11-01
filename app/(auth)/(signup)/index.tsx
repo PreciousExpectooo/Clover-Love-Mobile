@@ -31,11 +31,17 @@ const SignUpForm = () => {
     mobileNo: "",
     dateOfBirth: "",
     employmentStatus: "",
+    courseId: "",
+    location: "",
+    university: "",
     occupation: "",
     address: "",
+    gender: "",
     nickname: "",
     interests: "",
     match: "",
+    skill: "",
+    business: "",
   });
   const updateFormData = (data: any) => {
     setFormData((prevData) => ({
@@ -48,8 +54,8 @@ const SignUpForm = () => {
       <SignUpPhoneNumber formData={formData} updateFormData={updateFormData} />,
       <SignUpOTP formData={formData} updateFormData={updateFormData} />,
       <ProfileDetails formData={formData} updateFormData={updateFormData} />,
-      // <GenderSelect />,
-      // <ScanID />,
+      <GenderSelect formData={formData} updateFormData={updateFormData} />,
+      <ScanID />,
       <Nickname formData={formData} updateFormData={updateFormData} />,
       <SelectInterest formData={formData} updateFormData={updateFormData} />,
       <IdealMatch formData={formData} updateFormData={updateFormData} />,

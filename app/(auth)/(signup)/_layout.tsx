@@ -8,6 +8,7 @@ const SignUpLayout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="nickname" options={{ headerShown: false }} />
       <Stack.Screen name="otp" options={{ headerShown: false }} />
+      <Stack.Screen name="schoolSelect" options={{ headerShown: false }} />
     </Stack>
   );
 };

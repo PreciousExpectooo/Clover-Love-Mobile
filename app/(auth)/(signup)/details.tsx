@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Image, TouchableOpacity, Text } from "react-native";
 import CustomLayout from "@/components/CustomLayout";
 import FormField from "@/components/FormField";
 import CustomDropdown from "@/components/CustomDropdown";
 import * as ImagePicker from "expo-image-picker";
 import { employmentStatusOptions } from "@/lib/data";
+import { useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 
 export default function ProfileDetails({ formData, updateFormData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const params = useLocalSearchParams();
+  useEffect(() => {
+    if (params.university && params.university !== formData.university) {
+      updateFormData({ university: params.university });
+    }
+  }, [params.university]);
+
+  const router = useRouter();
 
   const handleImageSelect = async () => {
     const permissionResult =
@@ -30,6 +40,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
       updateFormData({ ...formData, profileImage: selectedImageUri });
     }
   };
+  console.log(formData.university);
 
   return (
     <CustomLayout
@@ -48,9 +59,6 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               }
               style={{ width: 150, height: 150, borderRadius: 8 }}
             />
-            <View className="bg-[#640D6B] w-[32px] h-[32px] absolute bottom-0 right-0 flex justify-center items-center rounded-[8px]">
-              <Image source={require("../../../assets/images/pencil.png")} />
-            </View>
           </TouchableOpacity>
         </View>
         <FormField
@@ -98,24 +106,101 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           value={formData.employmentStatus}
           options={employmentStatusOptions}
         />
-        <FormField
-          title="Occupation"
-          placeholder="Enter Occupation"
-          otherStyles="text-black"
-          value={formData.occupation}
-          handleChangeText={(e: any) =>
-            updateFormData({ ...formData, occupation: e })
-          }
-        />
-        <FormField
-          title="Address"
-          placeholder="Enter Address"
-          otherStyles="text-black"
-          value={formData.address}
-          handleChangeText={(e: any) =>
-            updateFormData({ ...formData, address: e })
-          }
-        />
+        {formData.employmentStatus === "student" && (
+          <>
+            <FormField
+              title="Course ID (e.g Bio-Chemist)"
+              placeholder="Enter Course ID"
+              otherStyles="text-black"
+              value={formData.courseId}
+              handleChangeText={(e: any) => updateFormData({ courseId: e })}
+            />
+            <FormField
+              title="Your Location"
+              placeholder="Enter Your Location"
+              otherStyles="text-black"
+              value={formData.location}
+              handleChangeText={(e: any) => updateFormData({ location: e })}
+            />
+
+            <TouchableOpacity onPress={() => router.push("/schoolSelect")}>
+              <FormField
+                title="Select University"
+                placeholder={formData.university || "Enter University Name"}
+                otherStyles="text-black"
+                value={formData.university}
+                handleChangeText={() => {}}
+                editable={false}
+              />
+            </TouchableOpacity>
+          </>
+        )}
+        {formData.employmentStatus === "employed" && (
+          <>
+            <FormField
+              title="Occupation"
+              placeholder="Enter Occupation"
+              otherStyles="text-black"
+              value={formData.occupation}
+              handleChangeText={(e: any) => updateFormData({ occupation: e })}
+            />
+            <FormField
+              title="Address"
+              placeholder="Enter Your Address"
+              otherStyles="text-black"
+              value={formData.address}
+              handleChangeText={(e: any) => updateFormData({ address: e })}
+            />
+          </>
+        )}
+
+        {formData.employmentStatus === "unemployed" && (
+          <>
+            <FormField
+              title="What Skill do you have?"
+              placeholder="Enter Skill"
+              otherStyles="text-black"
+              value={formData.skill}
+              handleChangeText={(e: any) => updateFormData({ skill: e })}
+            />
+            <FormField
+              title="Address"
+              placeholder="Enter Your Address"
+              otherStyles="text-black"
+              value={formData.address}
+              handleChangeText={(e: any) => updateFormData({ address: e })}
+            />
+          </>
+        )}
+        {formData.employmentStatus === "self-employed" && (
+          <>
+            <FormField
+              title="Industry ID (e.g Technologist)"
+              placeholder="Enter Business"
+              otherStyles="text-black"
+              value={formData.business}
+              handleChangeText={(e: any) => updateFormData({ business: e })}
+            />
+            <FormField
+              title="Address"
+              placeholder="Enter Your Address"
+              otherStyles="text-black"
+              value={formData.address}
+              handleChangeText={(e: any) => updateFormData({ address: e })}
+            />
+          </>
+        )}
+        {formData.employmentStatus === "retired" && (
+          <>
+            <FormField
+              title="Address"
+              placeholder="Enter Your Address"
+              otherStyles="text-black"
+              value={formData.address}
+              handleChangeText={(e: any) => updateFormData({ address: e })}
+            />
+          </>
+        )}
       </View>
     </CustomLayout>
   );
