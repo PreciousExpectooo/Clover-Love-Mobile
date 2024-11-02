@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function OnBoarding() {
   return (
@@ -37,6 +38,7 @@ export default function OnBoarding() {
           </View>
         </View>
       </View>
+      <StatusBar style="auto" />
     </View>
   );
 }

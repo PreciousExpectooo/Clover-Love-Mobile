@@ -13,6 +13,8 @@ import CustomLayout from "@/components/CustomLayout";
 import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import { useFormContext } from "@/components/FormContext";
 
 const SchoolSelect = () => {
   const universities = [
@@ -54,6 +56,7 @@ const SchoolSelect = () => {
     },
   ];
 
+  const { updateFormData } = useFormContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUniversity, setSelectedUniversity] = useState("");
 
@@ -81,11 +84,15 @@ const SchoolSelect = () => {
                     <View className="flex-1 bg-white">
                       <View className="bg-[#FAFAFA] p-2 rounded text-lg mb-4 h-[40px] flex justify-center">
                         <TextInput
-                          className="border-none"
+                          className={`border-none ${
+                            selectedUniversity && "font-[500]"
+                          }`}
                           placeholder={
                             selectedUniversity || "Search Universities"
                           }
-                          placeholderTextColor={"#B4B4B4"}
+                          placeholderTextColor={`${
+                            selectedUniversity ? "#000" : "#B4B4B4"
+                          }`}
                           value={searchQuery}
                           onChangeText={setSearchQuery}
                         />
@@ -131,7 +138,7 @@ const SchoolSelect = () => {
                 title="Continue"
                 onPress={() => {
                   if (selectedUniversity) {
-                    router.setParams({ university: selectedUniversity });
+                    updateFormData({ university: selectedUniversity });
                     router.back();
                   }
                 }}
@@ -140,6 +147,7 @@ const SchoolSelect = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 };

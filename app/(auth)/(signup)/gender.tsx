@@ -3,6 +3,7 @@ import CustomLayout from "@/components/CustomLayout";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { genderOptions } from "@/lib/data";
+import { StatusBar } from "expo-status-bar";
 
 const GenderSelect = ({ updateFormData }: any) => {
   const [selectedGender, setSelectedGender] = useState<number | null>(null);
@@ -29,12 +30,21 @@ const GenderSelect = ({ updateFormData }: any) => {
               source={selectedGender === index ? item.iconHighlight : item.icon}
               className="bg-white"
             />
-            <View className="">
-              <Text>{item.label}</Text>
+            <View>
+              <Text
+                className={`${
+                  selectedGender === index
+                    ? "text-[#640D6B] font-bold"
+                    : "text-[#949494]"
+                }`}
+              >
+                {item.label}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
       </View>
+      <StatusBar style="auto" />
     </CustomLayout>
   );
 };

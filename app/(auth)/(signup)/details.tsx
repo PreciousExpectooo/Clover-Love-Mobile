@@ -1,24 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { View, Image, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Image, TouchableOpacity, Platform } from "react-native";
 import CustomLayout from "@/components/CustomLayout";
 import FormField from "@/components/FormField";
 import CustomDropdown from "@/components/CustomDropdown";
 import * as ImagePicker from "expo-image-picker";
 import { employmentStatusOptions } from "@/lib/data";
 import { useRouter } from "expo-router";
-import { useLocalSearchParams } from "expo-router";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { StatusBar } from "expo-status-bar";
 
 export default function ProfileDetails({ formData, updateFormData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const params = useLocalSearchParams();
-  useEffect(() => {
-    if (params.university && params.university !== formData.university) {
-      updateFormData({ university: params.university });
-    }
-  }, [params.university]);
-
   const router = useRouter();
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [date, setDate] = useState(
+    formData.dateOfBirth ? new Date(formData.dateOfBirth) : new Date()
+  );
 
+  const handleDateChange = (event: any, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      const formattedDate = selectedDate.toLocaleDateString("en-GB");
+      setDate(selectedDate);
+      updateFormData({ ...formData, dateOfBirth: formattedDate });
+    }
+  };
   const handleImageSelect = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -40,7 +46,6 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
       updateFormData({ ...formData, profileImage: selectedImageUri });
     }
   };
-  console.log(formData.university);
 
   return (
     <CustomLayout
@@ -69,25 +74,43 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           handleChangeText={(e: any) =>
             updateFormData({ ...formData, name: e })
           }
+          type="default"
         />
         <FormField
           title="Email Address"
           placeholder="kizitodonpedro@gmail.com"
           otherStyles="text-black"
+          type="email-address"
           value={formData.email}
           handleChangeText={(e: any) =>
             updateFormData({ ...formData, email: e })
           }
         />
-        <FormField
-          title="Date of Birth"
-          placeholder="Enter Date of Birth"
-          otherStyles="text-black"
-          value={formData.dateOfBirth}
-          handleChangeText={(e: any) =>
-            updateFormData({ ...formData, dateOfBirth: e })
-          }
-        />
+        <View>
+          <TouchableOpacity onPress={() => setShowDatePicker(!showDatePicker)}>
+            <FormField
+              title="Date of Birth"
+              placeholder={formData.dateOfBirth || "Enter Date of Birth"}
+              otherStyles="text-black"
+              value={formData.dateOfBirth}
+              handleChangeText={() => {}}
+              editable={false}
+            />
+          </TouchableOpacity>
+
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              textColor="#A9A9A9"
+              mode="date"
+              display={Platform.OS === "ios" ? "inline" : "default"}
+              onChange={handleDateChange}
+              themeVariant="light"
+              accentColor="#640D6B"
+              style={{ width: "100%" }}
+            />
+          )}
+        </View>
         <FormField
           title="Mobile"
           placeholder="Enter Mobile Number"
@@ -96,13 +119,16 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           handleChangeText={(e: any) =>
             updateFormData({ ...formData, mobileNo: e })
           }
+          type="phone-pad"
         />
+
         <CustomDropdown
           title="Employment Status"
           placeholder={{ label: "Select Employment Status", value: null }}
           onValueChange={(value: any) =>
             updateFormData({ ...formData, employmentStatus: value })
           }
+          className="w-full z-10"
           value={formData.employmentStatus}
           options={employmentStatusOptions}
         />
@@ -122,8 +148,10 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               value={formData.location}
               handleChangeText={(e: any) => updateFormData({ location: e })}
             />
-
-            <TouchableOpacity onPress={() => router.push("/schoolSelect")}>
+            <TouchableOpacity
+              className="z-10"
+              onPress={() => router.push("/schoolSelect")}
+            >
               <FormField
                 title="Select University"
                 placeholder={formData.university || "Enter University Name"}
@@ -153,7 +181,6 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
             />
           </>
         )}
-
         {formData.employmentStatus === "unemployed" && (
           <>
             <FormField
@@ -202,6 +229,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           </>
         )}
       </View>
+      <StatusBar style="auto" />
     </CustomLayout>
   );
 }

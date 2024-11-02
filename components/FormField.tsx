@@ -7,6 +7,7 @@ export default function FormField({
   handleChangeText,
   placeholder,
   editable,
+  type,
 }: any) {
   return (
     <View className="bg-white w-[95%] mx-auto rounded-[8px] my-3 flex-col justify-center p-2">
@@ -18,6 +19,7 @@ export default function FormField({
         placeholder={placeholder}
         placeholderTextColor={"#A9A9A9"}
         editable={editable}
+        keyboardType={type}
       />
     </View>
   );

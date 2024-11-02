@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import ReactNativePhoneInput from "react-native-phone-input";
 import React from "react";
 import CustomLayout from "@/components/CustomLayout";
+import { StatusBar } from "expo-status-bar";
 
 export default function SignUpPhoneNumber({ formData, updateFormData }: any) {
   const handlePhoneChange = (number: any) => {
@@ -20,6 +21,7 @@ export default function SignUpPhoneNumber({ formData, updateFormData }: any) {
           initialValue={formData.phoneNumber}
         />
       </View>
+      <StatusBar style="auto" />
     </CustomLayout>
   );
 }

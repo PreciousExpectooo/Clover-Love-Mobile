@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput, Text } from "react-native";
 import CustomLayout from "@/components/CustomLayout";
+import { StatusBar } from "expo-status-bar";
 
 export default function Nickname({ formData, updateFormData }: any) {
   return (
@@ -20,6 +21,7 @@ export default function Nickname({ formData, updateFormData }: any) {
           }
         />
       </View>
+      <StatusBar style="auto" />
     </CustomLayout>
   );
 }

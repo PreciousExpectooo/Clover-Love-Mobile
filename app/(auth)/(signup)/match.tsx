@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CustomLayout from "@/components/CustomLayout";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 const IdealMatch = ({ formData, updateFormData }: any) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -19,12 +20,12 @@ const IdealMatch = ({ formData, updateFormData }: any) => {
     {
       label: "Friend",
       description: "I am not here to play around",
-      icon: require("../../../assets/images/love-match.png"),
+      icon: require("../../../assets/images/friends-match.png"),
     },
     {
       label: "Business",
       description: "I am not here to play around",
-      icon: require("../../../assets/images/love-match.png"),
+      icon: require("../../../assets/images/business-match.png"),
     },
   ];
 
@@ -54,6 +55,7 @@ const IdealMatch = ({ formData, updateFormData }: any) => {
           </TouchableOpacity>
         ))}
       </View>
+      <StatusBar style="auto" />
     </CustomLayout>
   );
 };

@@ -1,4 +1,6 @@
+// SignUpForm.tsx (as a page)
 import React from "react";
+import { useFormContext } from "@/components/FormContext";
 import {
   View,
   Text,
@@ -19,36 +21,12 @@ import GenderSelect from "./gender";
 import Nickname from "./nickname";
 import SelectInterest from "./interest";
 import IdealMatch from "./match";
-import { useState } from "react";
 import ScanID from "./scan";
+import { StatusBar } from "expo-status-bar";
 
 const SignUpForm = () => {
-  const [formData, setFormData] = useState({
-    phoneNumber: "",
-    otp: "",
-    name: "",
-    email: "",
-    mobileNo: "",
-    dateOfBirth: "",
-    employmentStatus: "",
-    courseId: "",
-    location: "",
-    university: "",
-    occupation: "",
-    address: "",
-    gender: "",
-    nickname: "",
-    interests: "",
-    match: "",
-    skill: "",
-    business: "",
-  });
-  const updateFormData = (data: any) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      ...data,
-    }));
-  };
+  const { formData, updateFormData } = useFormContext();
+
   const { steps, currentStepIndex, step, back, next, isFirstStep, isLastStep } =
     useMultiStepForm([
       <SignUpPhoneNumber formData={formData} updateFormData={updateFormData} />,
@@ -57,7 +35,7 @@ const SignUpForm = () => {
       <GenderSelect formData={formData} updateFormData={updateFormData} />,
       <ScanID />,
       <Nickname formData={formData} updateFormData={updateFormData} />,
-      <SelectInterest formData={formData} updateFormData={updateFormData} />,
+      <SelectInterest updateFormData={updateFormData} />,
       <IdealMatch formData={formData} updateFormData={updateFormData} />,
     ]);
 
@@ -65,6 +43,7 @@ const SignUpForm = () => {
     console.log("Sign Up Form submitted:", formData);
     router.push("/(onboarding)/welcome");
   };
+
   return (
     <SafeAreaView className="h-full">
       <KeyboardAvoidingView
@@ -109,7 +88,9 @@ const SignUpForm = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 };
+
 export default SignUpForm;

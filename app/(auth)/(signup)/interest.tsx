@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CustomLayout from "@/components/CustomLayout";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { interestsOptions } from "@/lib/data";
+import { StatusBar } from "expo-status-bar";
 
-type SelectInterestProps = {
-  formData: { interests: string };
-  updateFormData: (data: { interests: string }) => void;
-};
-
-const SelectInterest: React.FC<SelectInterestProps> = ({ updateFormData }) => {
+const SelectInterest = ({ updateFormData }: any) => {
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const handlePress = (index: number) => {
-    setSelectedItems((prevSelectedItems) => {
-      const newSelectedItems = prevSelectedItems.includes(index)
-        ? prevSelectedItems.filter((item) => item !== index)
-        : [...prevSelectedItems, index];
+    const newSelectedItems = selectedItems.includes(index)
+      ? selectedItems.filter((item) => item !== index)
+      : [...selectedItems, index];
 
+    setSelectedItems(newSelectedItems);
+
+    // Update form data after state is set
+    setTimeout(() => {
       const selectedInterests = newSelectedItems
         .map((idx) => interestsOptions[idx].title)
         .join(", ");
       updateFormData({ interests: selectedInterests });
-
-      return newSelectedItems;
-    });
+    }, 0);
   };
 
   return (
@@ -57,6 +54,7 @@ const SelectInterest: React.FC<SelectInterestProps> = ({ updateFormData }) => {
           </TouchableOpacity>
         ))}
       </View>
+      <StatusBar style="auto" />
     </CustomLayout>
   );
 };
