@@ -1,9 +1,18 @@
-import React, { useState } from "react";
-import { View, Image, TouchableOpacity, Platform } from "react-native";
+import * as React from "react";
+import { useState } from "react";
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Platform,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import CustomLayout from "@/components/CustomLayout";
 import FormField from "@/components/FormField";
 import CustomDropdown from "@/components/CustomDropdown";
 import * as ImagePicker from "expo-image-picker";
+import * as Location from "expo-location";
 import { employmentStatusOptions } from "@/lib/data";
 import { useRouter } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -11,6 +20,7 @@ import { StatusBar } from "expo-status-bar";
 
 export default function ProfileDetails({ formData, updateFormData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [locationLoading, setLocationLoading] = useState(false);
   const router = useRouter();
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState(
@@ -87,7 +97,10 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           }
         />
         <View>
-          <TouchableOpacity onPress={() => setShowDatePicker(!showDatePicker)}>
+          <TouchableOpacity
+            onPress={() => setShowDatePicker(true)}
+            className="z-10 w-full"
+          >
             <FormField
               title="Date of Birth"
               placeholder={formData.dateOfBirth || "Enter Date of Birth"}
@@ -99,16 +112,33 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
           </TouchableOpacity>
 
           {showDatePicker && (
-            <DateTimePicker
-              value={date}
-              textColor="#A9A9A9"
-              mode="date"
-              display={Platform.OS === "ios" ? "inline" : "default"}
-              onChange={handleDateChange}
-              themeVariant="light"
-              accentColor="#640D6B"
-              style={{ width: "100%" }}
-            />
+            <View>
+              <View className="w-full flex justify-end items-end px-3 mt-2">
+                <TouchableOpacity onPress={() => setShowDatePicker(false)}>
+                  <Text className="text-[#640D6B] font-bold text-md">Done</Text>
+                </TouchableOpacity>
+              </View>
+              <DateTimePicker
+                value={date}
+                textColor="#A9A9A9"
+                mode="date"
+                display={Platform.OS === "ios" ? "inline" : "default"}
+                onChange={(event, selectedDate) => {
+                  if (selectedDate) {
+                    const formattedDate =
+                      selectedDate.toLocaleDateString("en-GB");
+                    setDate(selectedDate);
+                    updateFormData({ ...formData, dateOfBirth: formattedDate });
+                    if (Platform.OS === "android") {
+                      setShowDatePicker(false);
+                    }
+                  }
+                }}
+                themeVariant="light"
+                accentColor="#640D6B"
+                style={{ width: "100%" }}
+              />
+            </View>
           )}
         </View>
         <FormField
@@ -141,13 +171,54 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               value={formData.courseId}
               handleChangeText={(e: any) => updateFormData({ courseId: e })}
             />
-            <FormField
-              title="Your Location"
-              placeholder="Enter Your Location"
-              otherStyles="text-black"
-              value={formData.location}
-              handleChangeText={(e: any) => updateFormData({ location: e })}
-            />
+
+            <TouchableOpacity
+              className="relative w-full z-10"
+              onPress={async () => {
+                setLocationLoading(true);
+                let { status } =
+                  await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                  setLocationLoading(false);
+                  alert("Permission to access location was denied");
+                  return;
+                }
+
+                let location = await Location.getCurrentPositionAsync({});
+                const address = await Location.reverseGeocodeAsync({
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                });
+
+                if (address[0]) {
+                  const locationString = `${address[0].city}, ${address[0].region}, ${address[0].country}`;
+                  updateFormData({ ...formData, location: locationString });
+                }
+                setLocationLoading(false);
+              }}
+            >
+              <FormField
+                title="Enter Location"
+                placeholder="Enter Location"
+                otherStyles="text-black"
+                value={formData.location}
+                handleChangeText={() => {}}
+                editable={false}
+              />
+              {locationLoading ? (
+                <ActivityIndicator
+                  size="small"
+                  color="#000"
+                  className="absolute right-4 top-[40%]"
+                />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/location.png")}
+                  className="absolute right-4 top-[40%] w-5 h-5"
+                />
+              )}
+            </TouchableOpacity>
+
             <TouchableOpacity
               className="z-10"
               onPress={() => router.push("/schoolSelect")}
@@ -172,13 +243,52 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               value={formData.occupation}
               handleChangeText={(e: any) => updateFormData({ occupation: e })}
             />
-            <FormField
-              title="Address"
-              placeholder="Enter Your Address"
-              otherStyles="text-black"
-              value={formData.address}
-              handleChangeText={(e: any) => updateFormData({ address: e })}
-            />
+            <TouchableOpacity
+              className="relative w-full z-10"
+              onPress={async () => {
+                setLocationLoading(true);
+                let { status } =
+                  await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                  setLocationLoading(false);
+                  alert("Permission to access location was denied");
+                  return;
+                }
+
+                let location = await Location.getCurrentPositionAsync({});
+                const address = await Location.reverseGeocodeAsync({
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                });
+
+                if (address[0]) {
+                  const locationString = `${address[0].city}, ${address[0].region}, ${address[0].country}`;
+                  updateFormData({ ...formData, location: locationString });
+                }
+                setLocationLoading(false);
+              }}
+            >
+              <FormField
+                title="Enter Location"
+                placeholder="Enter Location"
+                otherStyles="text-black"
+                value={formData.location}
+                handleChangeText={() => {}}
+                editable={false}
+              />
+              {locationLoading ? (
+                <ActivityIndicator
+                  size="small"
+                  color="#000"
+                  className="absolute right-4 top-[40%]"
+                />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/location.png")}
+                  className="absolute right-4 top-[40%] w-5 h-5"
+                />
+              )}
+            </TouchableOpacity>
           </>
         )}
         {formData.employmentStatus === "unemployed" && (
@@ -190,13 +300,52 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               value={formData.skill}
               handleChangeText={(e: any) => updateFormData({ skill: e })}
             />
-            <FormField
-              title="Address"
-              placeholder="Enter Your Address"
-              otherStyles="text-black"
-              value={formData.address}
-              handleChangeText={(e: any) => updateFormData({ address: e })}
-            />
+            <TouchableOpacity
+              className="relative w-full z-10"
+              onPress={async () => {
+                setLocationLoading(true);
+                let { status } =
+                  await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                  setLocationLoading(false);
+                  alert("Permission to access location was denied");
+                  return;
+                }
+
+                let location = await Location.getCurrentPositionAsync({});
+                const address = await Location.reverseGeocodeAsync({
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                });
+
+                if (address[0]) {
+                  const locationString = `${address[0].city}, ${address[0].region}, ${address[0].country}`;
+                  updateFormData({ ...formData, location: locationString });
+                }
+                setLocationLoading(false);
+              }}
+            >
+              <FormField
+                title="Enter Location"
+                placeholder="Enter Location"
+                otherStyles="text-black"
+                value={formData.location}
+                handleChangeText={() => {}}
+                editable={false}
+              />
+              {locationLoading ? (
+                <ActivityIndicator
+                  size="small"
+                  color="#000"
+                  className="absolute right-4 top-[40%]"
+                />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/location.png")}
+                  className="absolute right-4 top-[40%] w-5 h-5"
+                />
+              )}
+            </TouchableOpacity>
           </>
         )}
         {formData.employmentStatus === "self-employed" && (
@@ -208,24 +357,102 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               value={formData.business}
               handleChangeText={(e: any) => updateFormData({ business: e })}
             />
-            <FormField
-              title="Address"
-              placeholder="Enter Your Address"
-              otherStyles="text-black"
-              value={formData.address}
-              handleChangeText={(e: any) => updateFormData({ address: e })}
-            />
+            <TouchableOpacity
+              className="relative w-full z-10"
+              onPress={async () => {
+                setLocationLoading(true);
+                let { status } =
+                  await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                  setLocationLoading(false);
+                  alert("Permission to access location was denied");
+                  return;
+                }
+
+                let location = await Location.getCurrentPositionAsync({});
+                const address = await Location.reverseGeocodeAsync({
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                });
+
+                if (address[0]) {
+                  const locationString = `${address[0].city}, ${address[0].region}, ${address[0].country}`;
+                  updateFormData({ ...formData, location: locationString });
+                }
+                setLocationLoading(false);
+              }}
+            >
+              <FormField
+                title="Enter Location"
+                placeholder="Enter Location"
+                otherStyles="text-black"
+                value={formData.location}
+                handleChangeText={() => {}}
+                editable={false}
+              />
+              {locationLoading ? (
+                <ActivityIndicator
+                  size="small"
+                  color="#000"
+                  className="absolute right-4 top-[40%]"
+                />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/location.png")}
+                  className="absolute right-4 top-[40%] w-5 h-5"
+                />
+              )}
+            </TouchableOpacity>
           </>
         )}
         {formData.employmentStatus === "retired" && (
           <>
-            <FormField
-              title="Address"
-              placeholder="Enter Your Address"
-              otherStyles="text-black"
-              value={formData.address}
-              handleChangeText={(e: any) => updateFormData({ address: e })}
-            />
+            <TouchableOpacity
+              className="relative w-full z-10"
+              onPress={async () => {
+                setLocationLoading(true);
+                let { status } =
+                  await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                  setLocationLoading(false);
+                  alert("Permission to access location was denied");
+                  return;
+                }
+
+                let location = await Location.getCurrentPositionAsync({});
+                const address = await Location.reverseGeocodeAsync({
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                });
+
+                if (address[0]) {
+                  const locationString = `${address[0].city}, ${address[0].region}, ${address[0].country}`;
+                  updateFormData({ ...formData, location: locationString });
+                }
+                setLocationLoading(false);
+              }}
+            >
+              <FormField
+                title="Enter Location"
+                placeholder="Enter Location"
+                otherStyles="text-black"
+                value={formData.location}
+                handleChangeText={() => {}}
+                editable={false}
+              />
+              {locationLoading ? (
+                <ActivityIndicator
+                  size="small"
+                  color="#000"
+                  className="absolute right-4 top-[40%]"
+                />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/location.png")}
+                  className="absolute right-4 top-[40%] w-5 h-5"
+                />
+              )}
+            </TouchableOpacity>
           </>
         )}
       </View>

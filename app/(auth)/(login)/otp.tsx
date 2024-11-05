@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
 import CustomLayout from "@/components/CustomLayout";
@@ -7,6 +8,7 @@ import { StatusBar } from "expo-status-bar";
 export default function LoginOTP({ updateFormData }: any) {
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -21,13 +23,20 @@ export default function LoginOTP({ updateFormData }: any) {
   }, [timer]);
 
   const handleOTPChange = (otp: any) => {
+    setIsError(false);
     updateFormData({ otp });
+    // Validate OTP when length is 6
+    if (otp.length === 6) {
+      // Check if OTP matches 123456
+      setIsError(otp !== "123456");
+    }
   };
 
   const handleResendCode = () => {
     // Add your resend code logic here
     setTimer(30);
     setCanResend(false);
+    setIsError(false);
   };
 
   return (
@@ -39,8 +48,18 @@ export default function LoginOTP({ updateFormData }: any) {
         <OtpInput
           numberOfDigits={6}
           onTextChange={handleOTPChange}
-          focusColor={"#640D6B"}
+          focusColor={isError ? "#EF4444" : "#640D6B"}
+          theme={{
+            containerStyle: {
+              borderColor: isError ? "#EF4444" : "#640D6B",
+            },
+          }}
         />
+        {isError && (
+          <Text className="text-red-500 text-sm mt-1">
+            Invalid verification code. Please try again.
+          </Text>
+        )}
         <View className="mt-4 ">
           {canResend ? (
             <TouchableOpacity onPress={handleResendCode}>

@@ -13,7 +13,7 @@ export default function Nickname({ formData, updateFormData }: any) {
         <TextInput
           placeholder="Nickname right here"
           className="bg-[#FAFAFA] h-[54px] rounded-[8px]"
-          placeholderTextColor="#000"
+          placeholderTextColor="#716C6C"
           value={formData.nickname}
           style={{ paddingLeft: 10 }}
           onChangeText={(e: any) =>

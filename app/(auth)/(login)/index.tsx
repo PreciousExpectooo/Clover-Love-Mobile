@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 import {
   View,
@@ -14,7 +15,6 @@ import CustomButton from "@/components/CustomButton";
 import { useMultiStepForm } from "@/useMultistepForm";
 import LoginPhoneNumber from "@/app/(auth)/(login)/phoneNumber";
 import LoginOTP from "@/app/(auth)/(login)/otp";
-import React from "react";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({

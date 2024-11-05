@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import CustomLayout from "@/components/CustomLayout";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useState } from "react";
