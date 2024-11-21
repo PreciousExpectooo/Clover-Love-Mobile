@@ -41,7 +41,7 @@ const SignUpForm = () => {
 
   const handleFinish = () => {
     console.log("Sign Up Form submitted:", formData);
-    router.push("/(onboarding)/welcome");
+    router.push("/(root)/(tabs)/(finders)");
   };
 
   return (

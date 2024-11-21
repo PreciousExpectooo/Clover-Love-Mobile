@@ -68,3 +68,47 @@ export const genderOptions = [
     iconHighlight: require("../assets/images/female-highlight.png"),
   },
 ];
+
+export const pillNavFinders = ["Look-see", "Swipe", "Quick Match", "Favorites"];
+
+export const pillNavMessages = ["All", "Unread", "Clicks", "Notifications"];
+
+export const findersData = [
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: require("@/assets/images/kitkat.png"),
+  },
+
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: require("@/assets/images/kitkat-two.png"),
+  },
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: require("@/assets/images/kitkat-three.png"),
+  },
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: require("@/assets/images/kitkat-four.png"),
+  },
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: require("@/assets/images/kitkat-five.png"),
+  },
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: require("@/assets/images/kitkat-six.png"),
+  },
+];

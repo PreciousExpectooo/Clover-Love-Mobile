@@ -37,7 +37,7 @@ const LoginForm = () => {
 
   const handleFinish = () => {
     console.log("Login Form submitted:", formData);
-    router.push("/(root)/home");
+    router.push("/(root)/(tabs)/(finders)");
   };
   return (
     <SafeAreaView className="h-full">
