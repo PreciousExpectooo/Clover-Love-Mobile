@@ -7,7 +7,7 @@ const LookSee = ({ findersData }: any) => {
     <View className="mt-[20px] flex-row flex-wrap">
       {findersData.map((item: any, index: any) => (
         <View key={index} className="relative w-1/2 p-1">
-          <Image source={item.profilePic} className="rounded-[8px]" />
+          <item.profilePic width={163} height={183} />
           <View className="absolute left-[15px] bottom-[15px]">
             <Text className="text-white font-bold">
               {item.name}, {item.age}

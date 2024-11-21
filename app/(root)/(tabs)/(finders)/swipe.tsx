@@ -4,6 +4,7 @@ import { findersData } from "@/lib/data";
 
 const Swipe = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <View className="mt-[20px]">
       <FlatList
@@ -13,11 +14,7 @@ const Swipe = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
           <View key={index} className="rounded-[16px] relative">
-            <Image
-              alt=""
-              source={item.profilePic}
-              style={{ width: 345, height: 453, borderRadius: 16 }}
-            />
+            <item.profilePic width={345} height={453} />
             <View className="absolute bottom-24 z-10 w-full flex-row justify-center">
               <View className="">
                 <Text className="font-bold text-white text-[20px]">

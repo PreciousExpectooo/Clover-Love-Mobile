@@ -1,0 +1,1 @@
+npx @svgr/cli --native --typescript --out-dir dist --ignore-existing -- assets/images/svg

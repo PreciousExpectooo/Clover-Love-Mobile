@@ -1,3 +1,10 @@
+import SvgKitkatOne from "@/dist/Kitkat";
+import SvgKitkatTwo from "@/dist/KitkatTwo";
+import SvgKitkatThree from "@/dist/KitkatThree";
+import SvgKitkatFour from "@/dist/KitkatFour";
+import SvgKitkatFive from "@/dist/KitkatFive";
+import SvgKitkatSix from "@/dist/KitkatSix";
+
 export const employmentStatusOptions = [
   { label: "Employed", value: "employed" },
   { label: "Unemployed", value: "unemployed" },
@@ -78,37 +85,36 @@ export const findersData = [
     name: "KitKat",
     age: 24,
     job: "Product Designer",
-    profilePic: require("@/assets/images/kitkat.png"),
-  },
-
-  {
-    name: "KitKat",
-    age: 24,
-    job: "Product Designer",
-    profilePic: require("@/assets/images/kitkat-two.png"),
+    profilePic: SvgKitkatOne,
   },
   {
     name: "KitKat",
     age: 24,
     job: "Product Designer",
-    profilePic: require("@/assets/images/kitkat-three.png"),
+    profilePic: SvgKitkatTwo,
   },
   {
     name: "KitKat",
     age: 24,
     job: "Product Designer",
-    profilePic: require("@/assets/images/kitkat-four.png"),
+    profilePic: SvgKitkatThree,
   },
   {
     name: "KitKat",
     age: 24,
     job: "Product Designer",
-    profilePic: require("@/assets/images/kitkat-five.png"),
+    profilePic: SvgKitkatFour,
   },
   {
     name: "KitKat",
     age: 24,
     job: "Product Designer",
-    profilePic: require("@/assets/images/kitkat-six.png"),
+    profilePic: SvgKitkatFive,
+  },
+  {
+    name: "KitKat",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgKitkatSix,
   },
 ];
