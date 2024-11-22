@@ -19,6 +19,8 @@ interface CustomPageLayoutProps {
   isClicks?: boolean;
   isMessages?: boolean;
   isProfile?: boolean;
+  searchQuery?: string;
+  setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function CustomPageLayout({
@@ -28,12 +30,13 @@ export default function CustomPageLayout({
   isClicks = false,
   isMessages = false,
   isProfile = false,
+  searchQuery = "",
+  setSearchQuery,
 }: CustomPageLayoutProps) {
   return (
     <SafeAreaView className="h-full bg-white" edges={["top"]}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        className=""
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView
@@ -44,6 +47,7 @@ export default function CustomPageLayout({
         >
           <View className="min-h-[100%] p-[20px]">
             <View className="w-full space-y-[20px]">
+              {/* Header */}
               <View className="flex-row items-center justify-between">
                 <View className="flex-row items-center space-x-[10px]">
                   <View className="bg-[#640D6B52] w-[40px] h-[40px] rounded-[4px] items-center justify-center">
@@ -66,15 +70,7 @@ export default function CustomPageLayout({
                     <Text className="text-[#716C6C] text-[12px]">
                       {isFinders
                         ? "Port Harcourt, Rivers State, Nigeria"
-                        : isStatus
-                        ? "The color of love is purple."
-                        : isClicks
-                        ? "The color of love is purple."
-                        : isMessages
-                        ? "The color of love is purple."
-                        : isProfile
-                        ? "The color of love is purple."
-                        : ""}
+                        : "The color of love is purple."}
                     </Text>
                   </View>
                 </View>
@@ -88,7 +84,7 @@ export default function CustomPageLayout({
               </View>
               <View className="flex-row items-center justify-between">
                 <View className="h-[63px] rounded-[10px] border border-[#FAFAFA] flex-1 justify-center">
-                  <View className="flex-row items-center space-x-[10px]">
+                  <View className="flex-row items-center space-x-[10px] px-4">
                     <Image source={require("@/assets/icons/search-icon.png")} />
                     <TextInput
                       placeholder={
@@ -102,6 +98,8 @@ export default function CustomPageLayout({
                           ? "Search Messages"
                           : "Search"
                       }
+                      value={searchQuery}
+                      onChangeText={setSearchQuery}
                       className="w-full"
                       placeholderTextColor="#7E818C"
                     />

@@ -4,6 +4,26 @@ import SvgKitkatThree from "@/dist/KitkatThree";
 import SvgKitkatFour from "@/dist/KitkatFour";
 import SvgKitkatFive from "@/dist/KitkatFive";
 import SvgKitkatSix from "@/dist/KitkatSix";
+import SvgClicksOne from "@/dist/ClicksOne";
+import SvgClicksTwo from "@/dist/ClicksTwo";
+import SvgClicksThree from "@/dist/ClicksThree";
+import SvgClicksFour from "@/dist/ClicksFour";
+import SvgClicksFive from "@/dist/ClicksFive";
+import SvgClicksSix from "@/dist/ClicksSix";
+import SvgClicksSeven from "@/dist/ClicksSeven";
+import SvgStatusOne from "@/dist/StatusOne";
+import SvgStatusTwo from "@/dist/StatusTwo";
+import SvgStatusThree from "@/dist/StatusThree";
+import SvgStatusFour from "@/dist/StatusFour";
+import SvgStatusFive from "@/dist/StatusFive";
+import SvgStatusSix from "@/dist/StatusSix";
+import SvgStatusSeven from "@/dist/StatusSeven";
+import SvgMessagesOne from "@/dist/MessagesOne";
+import SvgMessagesTwo from "@/dist/MessagesTwo";
+import SvgMessagesThree from "@/dist/MessagesThree";
+import SvgMessagesFour from "@/dist/MessagesFour";
+import SvgMessagesFive from "@/dist/MessagesFive";
+import SvgMessagesSix from "@/dist/MessagesSix";
 
 export const employmentStatusOptions = [
   { label: "Employed", value: "employed" },
@@ -88,33 +108,258 @@ export const findersData = [
     profilePic: SvgKitkatOne,
   },
   {
-    name: "KitKat",
-    age: 24,
+    name: "Esty",
+    age: 21,
     job: "Product Designer",
     profilePic: SvgKitkatTwo,
   },
   {
-    name: "KitKat",
-    age: 24,
+    name: "Joy",
+    age: 27,
     job: "Product Designer",
     profilePic: SvgKitkatThree,
   },
   {
-    name: "KitKat",
-    age: 24,
+    name: "Chi Chi",
+    age: 20,
     job: "Product Designer",
     profilePic: SvgKitkatFour,
   },
   {
-    name: "KitKat",
-    age: 24,
+    name: "Eve",
+    age: 28,
     job: "Product Designer",
     profilePic: SvgKitkatFive,
+  },
+  {
+    name: "Abi",
+    age: 25,
+    job: "Product Designer",
+    profilePic: SvgKitkatSix,
+  },
+];
+
+export const clicksData = [
+  {
+    profilePic: SvgClicksOne,
+    groupName: "Love@firstBite",
+    groupDesc: "FoodiesLove",
+    status: "Free",
+  },
+  {
+    profilePic: SvgClicksTwo,
+    groupName: "ASixFigurething",
+    groupDesc: "MD's CEO's",
+    status: "Premium",
+  },
+  {
+    profilePic: SvgClicksThree,
+    groupName: "Love&Design",
+    groupDesc: "Creatives",
+    status: "Free",
+  },
+  {
+    profilePic: SvgClicksFour,
+    groupName: "CodeNameLove",
+    groupDesc: "Developers",
+    status: "Free",
+  },
+  {
+    profilePic: SvgClicksFive,
+    groupName: "Universities",
+    groupDesc: "Students",
+    status: "Premium",
+  },
+  {
+    profilePic: SvgClicksSix,
+    groupName: "RelationshipMatters",
+    groupDesc: "For All",
+    status: "Premium",
+  },
+  {
+    profilePic: SvgClicksSeven,
+    groupName: "PurpleLove",
+    groupDesc: "WhatMakesLovePurple",
+    status: "Free",
+  },
+  {
+    profilePic: SvgClicksOne,
+    groupName: "Love@firstBite",
+    groupDesc: "FoodiesLove",
+    status: "Free",
+  },
+  {
+    profilePic: SvgClicksTwo,
+    groupName: "ASixFigurething",
+    groupDesc: "MD's CEO's",
+    status: "Premium",
+  },
+  {
+    profilePic: SvgClicksThree,
+    groupName: "Love&Design",
+    groupDesc: "Creatives",
+    status: "Free",
+  },
+];
+
+export const statusData = [
+  {
+    name: "Andy",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgStatusOne,
+    time: "12:39 AM",
   },
   {
     name: "KitKat",
     age: 24,
     job: "Product Designer",
-    profilePic: SvgKitkatSix,
+    profilePic: SvgStatusTwo,
+    time: "12:39 AM",
+  },
+  {
+    name: "Esty",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgStatusThree,
+    time: "12:39 AM",
+  },
+  {
+    name: "Abi",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgStatusFour,
+    time: "12:39 AM",
+  },
+  {
+    name: "Joy",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgStatusFive,
+    time: "12:39 AM",
+  },
+  {
+    name: "Chi Chi",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgStatusSix,
+    time: "12:39 AM",
+  },
+  {
+    name: "Eve",
+    age: 24,
+    job: "Product Designer",
+    profilePic: SvgStatusSeven,
+    time: "12:39 AM",
+  },
+];
+
+export const messagesData = [
+  {
+    profilePic: SvgMessagesOne,
+    chatName: "Love@firstbite",
+    chatMessages: "@Kizy How have you been do...",
+    time: "12:39 AM",
+    unread: true,
+    noOfMessages: 3,
+  },
+  {
+    profilePic: SvgMessagesTwo,
+    chatName: "Love@firstbite",
+    chatMessages: "@Kizy How have you been do...",
+    time: "12:39 AM",
+    unread: false,
+    noOfMessages: 0,
+  },
+  {
+    profilePic: SvgMessagesThree,
+    chatName: "Love@firstbite",
+    chatMessages: "@Kizy How have you been do...",
+    time: "12:39 AM",
+    unread: true,
+    noOfMessages: 2,
+  },
+  {
+    profilePic: SvgMessagesFour,
+    chatName: "Love@firstbite",
+    chatMessages: "@Kizy How have you been do...",
+    time: "12:39 AM",
+    unread: false,
+    noOfMessages: 0,
+  },
+  {
+    profilePic: SvgMessagesFive,
+    chatName: "Love@firstbite",
+    chatMessages: "@Kizy How have you been do...",
+    time: "12:39 AM",
+    unread: true,
+    noOfMessages: 5,
+  },
+  {
+    profilePic: SvgMessagesSix,
+    chatName: "Love@firstbite",
+    chatMessages: "@Kizy How have you been do...",
+    time: "12:39 AM",
+    unread: false,
+    noOfMessages: 1,
+  },
+];
+
+export const notificationsData = [
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
+  },
+  {
+    profilePic: SvgMessagesThree,
+    name: "Kassie",
+    age: 24,
+    info: "Wants to chat with you",
+    time: "12:39 AM",
   },
 ];
