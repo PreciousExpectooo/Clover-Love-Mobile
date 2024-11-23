@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import SvgProfileImg from "@/dist/ProfileImg";
+import SvgProfileImg from "../../../../dist/ProfileImg";
 import {
   Books,
   Diamond,
@@ -18,7 +18,7 @@ import {
   Vibrate,
   Dropdown,
   Movies,
-} from "@/dist";
+} from "../../../../dist";
 import { findersData } from "@/lib/data";
 import ReactNativeModal from "react-native-modal";
 import { router } from "expo-router";
@@ -80,7 +80,7 @@ const Profile = () => {
                       <Text className="text-[12px]">The Crown</Text>
                     </View>
                   </View>
-                  <View className="flex-row">
+                  <View className="flex-row space-x-5">
                     <TouchableOpacity>
                       <Vibrate />
                     </TouchableOpacity>

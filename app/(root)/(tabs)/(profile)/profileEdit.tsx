@@ -18,9 +18,9 @@ import { employmentStatusOptions } from "@/lib/data";
 import { useRouter } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { StatusBar } from "expo-status-bar";
-import { EditProfile } from "@/dist";
+import { EditProfile } from "../../../../dist";
 import { SafeAreaView } from "react-native-safe-area-context";
-import SvgBack from "@/dist/Back";
+import SvgBack from "@/components/svgs/Back";
 
 const ProfileEdit = () => {
   const [formData, setFormData] = useState({

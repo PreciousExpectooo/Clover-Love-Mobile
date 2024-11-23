@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import SvgMatched from "@/dist/Matched";
+import SvgMatched from "@/components/svgs/Matched";
 
 const QuickMatch = () => {
   return (
