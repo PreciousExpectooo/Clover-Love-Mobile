@@ -26,7 +26,11 @@ const All = ({ searchQuery }: any) => {
             <View className="flex-col space-y-2">
               <Text className="text-[#640D6B] text-[12px]">{item.time}</Text>
               <View className="flex-row justify-end">
-                <View className="justify-center bg-[#E65C19] items-center rounded-full w-[16px] h-[16px]">
+                <View
+                  className={`justify-center ${
+                    item.noOfMessages && "bg-[#E65C19]"
+                  } items-center rounded-full w-[16px] h-[16px]`}
+                >
                   <Text className="text-white text-[12px]">
                     {item.noOfMessages}
                   </Text>

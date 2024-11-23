@@ -269,7 +269,7 @@ export const messagesData = [
     chatMessages: "@Kizy How have you been do...",
     time: "12:39 AM",
     unread: false,
-    noOfMessages: 0,
+    noOfMessages: "",
   },
   {
     profilePic: SvgMessagesThree,
@@ -285,7 +285,7 @@ export const messagesData = [
     chatMessages: "@Kizy How have you been do...",
     time: "12:39 AM",
     unread: false,
-    noOfMessages: 0,
+    noOfMessages: "",
   },
   {
     profilePic: SvgMessagesFive,
