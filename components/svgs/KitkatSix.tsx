@@ -9,20 +9,24 @@ import Svg, {
   Image,
 } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
-const SvgKitkatSix = (props: SvgProps) => (
+const SvgKitkatSix = ({
+  width,
+  height,
+  ...props
+}: SvgProps & { width: number; height: number }) => (
   <Svg
     // xmlns="http://www.w3.org/2000/svg"
     // xmlnsXlink="http://www.w3.org/1999/xlink"
-    width={163}
-    height={183}
+    width={width}
+    height={height}
     fill="none"
     {...props}
   >
-    <Rect width={163} height={183} fill="#D9D9D9" rx={8} />
-    <Rect width={163} height={183} fill="url(#kitkat-six_svg__a)" rx={8} />
+    <Rect width={width} height={height} fill="#D9D9D9" rx={8} />
+    <Rect width={width} height={height} fill="url(#kitkat-six_svg__a)" rx={8} />
     <Rect
-      width={163}
-      height={183}
+      width={width}
+      height={height}
       fill="url(#kitkat-six_svg__b)"
       fillOpacity={0.2}
       rx={8}
