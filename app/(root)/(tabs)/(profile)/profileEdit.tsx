@@ -18,7 +18,8 @@ import { employmentStatusOptions } from "@/lib/data";
 import { useRouter } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { StatusBar } from "expo-status-bar";
-import { EditProfile } from "../../../../dist";
+// import { EditProfile } from "../../../../dist";
+import { EditProfile } from "@/components/svgs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SvgBack from "@/components/svgs/Back";
 

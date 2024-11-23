@@ -9,7 +9,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import SvgProfileImg from "../../../../dist/ProfileImg";
+// import SvgProfileImg from "../../../../dist/ProfileImg";
+import SvgProfileImg from "@/components/svgs/ProfileImg";
 import {
   Books,
   Diamond,
@@ -18,7 +19,7 @@ import {
   Vibrate,
   Dropdown,
   Movies,
-} from "../../../../dist";
+} from "@/components/svgs";
 import { findersData } from "@/lib/data";
 import ReactNativeModal from "react-native-modal";
 import { router } from "expo-router";
