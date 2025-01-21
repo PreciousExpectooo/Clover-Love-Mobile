@@ -11,7 +11,7 @@ export default function PillNav({
   onTabChange?: (tab: string) => void;
 }) {
   return (
-    <View className="w-full">
+    <View className="w-full px-[10px]">
       <View className="flex-row items-center justify-between">
         {navData.map((tab) => (
           <TouchableOpacity

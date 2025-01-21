@@ -1,5 +1,5 @@
 // SignUpForm.tsx (as a page)
-import React from "react";
+import React, { useState } from "react";
 import { useFormContext } from "@/components/FormContext";
 import {
   View,
@@ -26,7 +26,7 @@ import { StatusBar } from "expo-status-bar";
 
 const SignUpForm = () => {
   const { formData, updateFormData } = useFormContext();
-
+  const [loading, setLoading] = useState(false);
   const { steps, currentStepIndex, step, back, next, isFirstStep, isLastStep } =
     useMultiStepForm([
       <SignUpPhoneNumber formData={formData} updateFormData={updateFormData} />,

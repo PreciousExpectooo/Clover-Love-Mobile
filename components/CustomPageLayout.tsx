@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { usePathname } from "expo-router";
+import { Link, router, usePathname } from "expo-router";
 
 interface CustomPageLayoutProps {
   children: React.ReactNode;
@@ -40,15 +40,16 @@ export default function CustomPageLayout({
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={{
             height: "auto",
           }}
           className="flex-1"
         >
-          <View className="min-h-[100%] p-[20px]">
-            <View className="w-full space-y-[20px]">
+          <View className="min-h-[100%] ">
+            <View className="w-full space-y-[20px] p-[20px]">
               {/* Header */}
-              <View className="flex-row items-center justify-between">
+              <View className="flex-row  items-center justify-between">
                 <View className="flex-row items-center space-x-[10px]">
                   <View className="bg-[#640D6B52] w-[40px] h-[40px] rounded-[4px] items-center justify-center">
                     <Image source={require("@/assets/images/compass.png")} />
@@ -78,7 +79,12 @@ export default function CustomPageLayout({
                   {isFinders ? (
                     <Image source={require("@/assets/images/vibe.png")} />
                   ) : (
-                    <Image source={require("@/assets/icons/add.png")} />
+                    <Link
+                      href={"/(root)/(tabs)/(messages)/(modals)/new-chat"}
+                      // asChild
+                    >
+                      <Image source={require("@/assets/icons/add.png")} />
+                    </Link>
                   )}
                 </View>
               </View>
@@ -110,7 +116,7 @@ export default function CustomPageLayout({
                 </View>
               </View>
             </View>
-            {children}
+            <View className="px-[10px]">{children}</View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

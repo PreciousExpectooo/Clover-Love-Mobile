@@ -12,7 +12,7 @@ const Notifications = ({ searchQuery }: any) => {
         filteredClicks.map((item, index) => (
           <View
             key={index}
-            className="flex-row justify-between items-center border-b-[0.3px] border-[#716C6C] px-2 py-2"
+            className="flex-row justify-between items-center border-b-[0.3px] border-[#716C6C] py-2"
           >
             <View className="flex-row items-center space-x-2">
               <item.profilePic />

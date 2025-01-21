@@ -141,60 +141,70 @@ export const findersData = [
 
 export const clicksData = [
   {
+    id: 1,
     profilePic: SvgClicksOne,
     groupName: "Love@firstBite",
     groupDesc: "FoodiesLove",
     status: "Free",
   },
   {
+    id: 2,
     profilePic: SvgClicksTwo,
     groupName: "ASixFigurething",
     groupDesc: "MD's CEO's",
     status: "Premium",
   },
   {
+    id: 3,
     profilePic: SvgClicksThree,
     groupName: "Love&Design",
     groupDesc: "Creatives",
     status: "Free",
   },
   {
+    id: 4,
     profilePic: SvgClicksFour,
     groupName: "CodeNameLove",
     groupDesc: "Developers",
     status: "Free",
   },
   {
+    id: 5,
     profilePic: SvgClicksFive,
     groupName: "Universities",
     groupDesc: "Students",
     status: "Premium",
   },
   {
+    id: 6,
     profilePic: SvgClicksSix,
     groupName: "RelationshipMatters",
     groupDesc: "For All",
     status: "Premium",
   },
   {
+    id: 7,
     profilePic: SvgClicksSeven,
     groupName: "PurpleLove",
     groupDesc: "WhatMakesLovePurple",
     status: "Free",
   },
   {
+    id: 8,
     profilePic: SvgClicksOne,
     groupName: "Love@firstBite",
     groupDesc: "FoodiesLove",
     status: "Free",
   },
   {
+    id: 9,
     profilePic: SvgClicksTwo,
     groupName: "ASixFigurething",
     groupDesc: "MD's CEO's",
     status: "Premium",
   },
   {
+    id: 10,
     profilePic: SvgClicksThree,
     groupName: "Love&Design",
     groupDesc: "Creatives",
@@ -307,6 +317,7 @@ export const messagesData = [
 
 export const notificationsData = [
   {
+    id: 1,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -314,6 +325,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 2,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -321,6 +333,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 3,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -328,6 +341,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 4,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -335,6 +349,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 5,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -342,6 +357,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 6,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -349,6 +365,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 7,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,
@@ -356,6 +373,7 @@ export const notificationsData = [
     time: "12:39 AM",
   },
   {
+    id: 8,
     profilePic: SvgMessagesThree,
     name: "Kassie",
     age: 24,

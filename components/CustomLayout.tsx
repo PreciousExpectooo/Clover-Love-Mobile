@@ -9,7 +9,6 @@ const CustomLayout = ({ children, title, subtitle }: any) => {
           {subtitle}
         </Text>
       </View>
-
       {children}
     </View>
   );

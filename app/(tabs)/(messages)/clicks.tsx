@@ -7,12 +7,12 @@ const Clicks = ({ searchQuery }: any) => {
     item.groupName.toLowerCase().includes(searchQuery.toLowerCase())
   );
   return (
-    <View className="">
+    <View>
       {filteredClicks.length > 0 ? (
         filteredClicks.map((item, index) => (
           <View
             key={index}
-            className="flex-row justify-between items-center border-b-[0.3px] border-[#716C6C] px-2 py-2"
+            className="flex-row justify-between items-center border-b-[0.3px] border-[#716C6C] py-2"
           >
             <View className="flex-row items-center space-x-2">
               <item.profilePic />
@@ -24,7 +24,7 @@ const Clicks = ({ searchQuery }: any) => {
               </View>
             </View>
             <View>
-              <Text className="text-[#272028] text-[12px]">{item.status}</Text>
+              <Text className="text-[#640D6B] text-[12px]">{item.status}</Text>
             </View>
           </View>
         ))

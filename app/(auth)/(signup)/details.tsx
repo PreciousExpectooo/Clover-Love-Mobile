@@ -70,7 +70,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
               source={
                 formData.profileImage
                   ? { uri: formData.profileImage }
-                  : require("../../../assets/images/details.png")
+                  : require("@/assets/images/details.png")
               }
               style={{ width: 150, height: 150, borderRadius: 8 }}
             />
@@ -213,7 +213,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
                 />
               ) : (
                 <Image
-                  source={require("../../../assets/images/location.png")}
+                  source={require("@/assets/images/location.png")}
                   className="absolute right-4 top-[40%] w-5 h-5"
                 />
               )}
@@ -284,7 +284,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
                 />
               ) : (
                 <Image
-                  source={require("../../../assets/images/location.png")}
+                  source={require("@/assets/images/location.png")}
                   className="absolute right-4 top-[40%] w-5 h-5"
                 />
               )}
@@ -341,7 +341,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
                 />
               ) : (
                 <Image
-                  source={require("../../../assets/images/location.png")}
+                  source={require("@/assets/images/location.png")}
                   className="absolute right-4 top-[40%] w-5 h-5"
                 />
               )}
@@ -398,7 +398,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
                 />
               ) : (
                 <Image
-                  source={require("../../../assets/images/location.png")}
+                  source={require("@/assets/images/location.png")}
                   className="absolute right-4 top-[40%] w-5 h-5"
                 />
               )}
@@ -448,7 +448,7 @@ export default function ProfileDetails({ formData, updateFormData }: any) {
                 />
               ) : (
                 <Image
-                  source={require("../../../assets/images/location.png")}
+                  source={require("@/assets/images/location.png")}
                   className="absolute right-4 top-[40%] w-5 h-5"
                 />
               )}

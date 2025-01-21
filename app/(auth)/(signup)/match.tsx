@@ -15,17 +15,17 @@ const IdealMatch = ({ formData, updateFormData }: any) => {
     {
       label: "Love",
       description: "I am not here to play around",
-      icon: require("../../../assets/images/love-match.png"),
+      icon: require("@/assets/images/love-match.png"),
     },
     {
       label: "Friend",
       description: "I am not here to play around",
-      icon: require("../../../assets/images/friends-match.png"),
+      icon: require("@/assets/images/friends-match.png"),
     },
     {
       label: "Business",
       description: "I am not here to play around",
-      icon: require("../../../assets/images/business-match.png"),
+      icon: require("@/assets/images/business-match.png"),
     },
   ];
 
